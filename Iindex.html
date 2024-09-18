@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio-SVL</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background: #2c3e50; /* Azul escuro */
+            color: #fff;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .nav-menu a:hover {
+            background: #34495e; /* Azul mais escuro */
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e74c3c; /* Vermelho vibrante */
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .profile-section img {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 6px solid #e74c3c; /* Vermelho vibrante */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-section img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-section h2 {
+            margin-top: 1rem;
+            color: #e74c3c;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #3498db; /* Azul vibrante */
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            transition: height 0.3s ease;
+        }
+
+        .content-section:hover::before {
+            height: 100%;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: #3498db;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 5px;
+            background: #e74c3c; /* Vermelho vibrante */
+            border-radius: 5px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        h2:hover::after {
+            transform: scaleX(1);
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .contact ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact ul li a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .contact ul li a:hover {
+            color: #2980b9;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #2c3e50;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu a {
+                padding: 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <h1>LANGA</h1>
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-menu">
+                <li><a href="#about">Sobre Mim</a></li>
+                <li><a href="#education">Educação</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#languages">Idiomas</a></li>
+                <li><a href="#courses">Cursos Profissionais</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section class="profile-section">
+            <img src="C:\Users\VASCO\Downloads\PORT.jpeg" alt="Foto de Perfil">
+            <h2>Sidney Langa</h2>
+        </section>
+        
+        <section id="about" class="content-section">
+            <h2>Sobre Mim</h2>
+            <p>Meu nome é Sidney Langa, tenho 18 anos e sou estudante do curso TIC's desde abril de 2024, no Instituto de Transportes e Comunicações.</p>
+        </section>
+        
+        <section id="education" class="content-section">
+            <h2>Educação</h2>
+            <ul>
+                <li>CV3, Electricidade Industrial no Instituto de Transportes e Comunicações (ITC) – 2023</li>
+                <li>10ª Na Escola Secundária Samora Moisés Machel – 2022</li>
+                <li>7ª Na Escola Primária Completa Artur Ussene Canana – 
+
+2019</li>
+                <li>5ª Na Escola Primária Completa Artur Ussene Canana – 2017</li>
+            </ul>
+        </section>
+        
+        <section id="skills" class="content-section">
+            <h2>Habilidades</h2>
+            <p>Suporte Técnico</p>
+            <p>Instalação e Configuração de Software</p>
+            <p>Configuração de Rede</p>
+        </section>
+
+        <section id="languages" class="content-section">
+            <h2>Idiomas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Idioma</th>
+                        <th>Escrita</th>
+                        <th>Leitura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Português</td>
+                        <td>Boa</td>
+                        <td>Boa</td>
+                    </tr>
+                    <tr>
+                        <td>Inglês</td>
+                        <td>Boa</td>
+                        <td>Boa</td>
+                    </tr>
+                    <tr>
+                        <td>Changana</td>
+                        <td>Boa</td>
+                        <td>Boa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="courses" class="content-section">
+            <h2>Cursos Profissionais</h2>
+            <ul>
+                <li>Design Gráfico no Centro de Formação Central Jovem (CFCJ) – 2023</li>
+            </ul>
+        </section>
+        
+        <section id="experience" class="content-section">
+            <h2>Experiência Profissional</h2>
+            <p>Criação de infográficos.</p>
+            <p>Design de logotipos.</p>
+            <p>Participação em eventos de tecnologia e design.</p>
+        </section>
+        
+        <section id="contact" class="content-section contact">
+            <h2>Contato</h2>
+            <p>+258 85 777 17 09</p>
+            <p>Você pode me encontrar nas redes sociais:</p>
+            <ul>
+                <li><a href="https://www.facebook.com/profile.php?id=100084721892778" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/sidneylang16?igsh=MWRlcnptZTdtNnV6dg==" target="_blank">Instagram</a></li>
+                <li><a href="https://www.youtube.com/@sidneylang16" target="_blank">YouTube</a></li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Sidney Langa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
